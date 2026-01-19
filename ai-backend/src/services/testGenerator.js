@@ -1,23 +1,19 @@
-function generateTest(steps, framework) {
-  if (framework === "selenium") {
-    return `
-@Test
-public void generatedTest() {
-    DriverFactory.getDriver().get("https://example.com");
-    // Steps: ${steps}
-}
-`;
-  }
+const OpenAI = require("openai");
+const { buildPrompt } = require("./promptBuilder");
 
-  if (framework === "playwright") {
-    return `
-def test_generated(page):
-    page.goto("https://example.com")
-    # Steps: ${steps}
-`;
-  }
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
 
-  return "Unsupported framework";
+async function generateTest(steps, framework) {
+  const prompt = buildPrompt(steps, framework);
+
+  const response = await client.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [{ role: "user", content: prompt }]
+  });
+
+  return response.choices[0].message.content;
 }
 
 module.exports = { generateTest };

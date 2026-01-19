@@ -1,0 +1,24 @@
+# ===== Environment variables =====
+.env
+# ===== Node.js =====
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+# ===== Maven / Java =====
+target/
+*.class
+# ===== Python =====
+venv/
+__pycache__/
+*.pyc
+
+# ===== Playwright =====
+.playwright/
+test-results/
+allure-results/
+.pytest_cache/
+
+# ===== OS =====
+.DS_Store
+Thumbs.db

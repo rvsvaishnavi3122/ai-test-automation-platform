@@ -15,8 +15,10 @@ public class LoginPage {
         this.locatorUtils = new locatorUtils(driver);
     }
 
-    public void login(String user) {
-        locatorUtils.findElement(By.id("username")).sendKeys(user);
+    public void enterUsername() {
+        // INTENTIONALLY BROKEN LOCATOR (FOR PHASE 3E)
+        locatorUtils
+            .findElement(By.id("THIS_ID_DOES_NOT_EXIST"))
+            .sendKeys("admin");
     }
 }
-

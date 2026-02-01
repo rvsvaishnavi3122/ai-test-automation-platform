@@ -22,3 +22,9 @@ allure-results/
 # ===== OS =====
 .DS_Store
 Thumbs.db
+#Runtime artifcats
+healing-metrics/
+failure-analytics/
+failure-artifcats/
+#Maven
+target/

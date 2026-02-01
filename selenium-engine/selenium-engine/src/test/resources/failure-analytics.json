@@ -1,0 +1,6 @@
+{"failures": [{
+  "failureType": "UNKNOWN",
+  "message": "Intentional failure for analytics",
+  "testName": "loginTest",
+  "timestamp": "2026-02-01T20:28:40.158659900"
+}]}

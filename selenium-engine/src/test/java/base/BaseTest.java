@@ -4,10 +4,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 
 import driver.DriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import listeners.TestFailureListener;
 
+@Listeners(TestFailureListener.class)
 public class BaseTest {
 
     @BeforeMethod
@@ -22,5 +25,4 @@ public class BaseTest {
     public void tearDown() {
         DriverFactory.unload();
     }
-    
 }

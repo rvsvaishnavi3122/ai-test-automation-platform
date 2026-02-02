@@ -1,25 +1,14 @@
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
 
-console.log("KEY CHECK:", process.env.OPENAI_API_KEY?.startsWith("sk-"));
-
-const express = require("express");
-const cors = require("cors");
-
-const generateTestRoute = require("./routes/generateTest");
+import express from "express";
+import generateTest from "./routes/generateTest.js";
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 
-app.use("/generate-test", generateTestRoute);
+app.use("/generate-test", generateTest);
 
-const PORT = 3001;
-app.listen(PORT, () => {
-  console.log(`AI Backend running on port ${PORT}`);
-});
-console.log(
-  "OPENAI_API_KEY loaded:",
-  process.env.OPENAI_API_KEY?.startsWith("sk-")
+app.listen(3001, () =>
+  console.log("AI backend running on http://localhost:3001")
 );
-console.log("API KEY PREFIX:", process.env.OPENAI_API_KEY?.slice(0, 7));
-

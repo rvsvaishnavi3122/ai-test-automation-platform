@@ -1,28 +1,19 @@
-const express = require("express");
+import express from "express";
+import { generateSeleniumTest } from "../services/openaiService.js";
+
 const router = express.Router();
 
-const { generateTest } = require("../services/testGenerator");
-
 router.post("/", async (req, res) => {
-  const { steps, framework } = req.body;
-
-  if (!steps || !framework) {
-    return res.status(400).json({
-      error: "steps and framework are required"
-    });
-  }
-
   try {
-    const code = await generateTest(steps, framework);
-    res.json({
-      framework,
-      generatedCode: code
-    });
-  } catch (err) {
-    res.status(500).json({
-      error: err.message
-    });
+    const { steps } = req.body;
+    if (!steps) {
+      return res.status(400).json({ error: "steps are required" });
+    }
+    const code = await generateSeleniumTest(steps);
+    res.json({ code });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
   }
 });
 
-module.exports = router;
+export default router;
